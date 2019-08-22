@@ -32,42 +32,74 @@ Prototype Refactor
   */
   
   // Test you work by un-commenting these 3 objects and the list of console logs below:
-  
-
-function GameObject(attr) {
-  this.createdAt = attr.createdAt,
-  this.name = attr.name,
-  this.dimensions = attr.dimensions
-};
-
-GameObject.prototype.destroy = function () {
-  return `${this.name} was removed from the game.`;
-};
-
-
-function CharacterStats(attr) {
-  GameObject.call(this, attr),
-  this.healthPoints = attr.healthPoints
-};
-CharacterStats.prototype = Object.create(GameObject.prototype);
-
-CharacterStats.prototype.takeDamage = function () {
-  return `${this.name} took damage.`;
-};
 
   
-function Humanoid(attr) {
-  CharacterStats.call(this, attr),
-  this.team = attr.team,
-  this.weapons = attr.weapons,
-  this.language = attr.language  
-};
+// function GameObject(attr) {
+//   this.createdAt = attr.createdAt,
+//   this.name = attr.name,
+//   this.dimensions = attr.dimensions
+// };
 
-Humanoid.prototype = Object.create(CharacterStats.prototype);
+// GameObject.prototype.destroy = function () {
+//   return `${this.name} was removed from the game.`;
+// };
 
-Humanoid.prototype.greet = function () {
-  return `${this.name} offers a greeting in ${this.language}.`;
-};
+// function CharacterStats(attr) {
+    //   GameObject.call(this, attr),
+    //   this.healthPoints = attr.healthPoints
+    // };
+    // CharacterStats.prototype = Object.create(GameObject.prototype);
+    
+    // CharacterStats.prototype.takeDamage = function () {
+    //   return `${this.name} took damage.`;
+    // };
+
+// function Humanoid(attr) {
+//   CharacterStats.call(this, attr),
+//   this.team = attr.team,
+//   this.weapons = attr.weapons,
+//   this.language = attr.language  
+// };
+
+// Humanoid.prototype = Object.create(CharacterStats.prototype);
+
+// Humanoid.prototype.greet = function () {
+//   return `${this.name} offers a greeting in ${this.language}.`;
+// };
+
+
+class GameObject{
+     constructor(attr){
+         this.createdAt = attr.createdAt,
+         this.name = attr.name,
+         this.dimensions = attr.dimensions
+     }
+     destroy () {
+         return `${this.name} was removed from the game.`;
+     }
+}
+
+class CharacterStats extends GameObject {
+    constructor(attr){
+        super(attr);
+        this.healthPoints = attr.healthPoints
+    }
+    takeDamage(){ 
+        return `${this.name} took damage.`;
+    }
+}
+
+class Humanoid extends CharacterStats {
+    constructor(attr){
+        super(attr);
+        this.team = attr.team,
+        this.weapons = attr.weapons,
+        this.language = attr.language
+    }
+    greet(){
+        return `${this.name} offers a greeting in ${this.language}.`;
+    }
+}
   
 const mage = new Humanoid({
       createdAt: new Date(),
