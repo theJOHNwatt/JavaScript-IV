@@ -27,9 +27,8 @@ class Instructor extends Person {
     }
 }
 
-console.log (this.Instructor);
 
-class Student extends Instructor {
+class Student extends Person {
     constructor(attr){
         super(attr);
         this.previousBackground = attr.previousBackground,
@@ -60,3 +59,88 @@ class ProjectManager extends Instructor {
         console.log (`${this.name} debugs ${student.name}'s code on ${subject}`);
     }
 }
+
+
+const fred = new Person({
+    name: 'Fred',
+    age: 37,
+    location: 'Bedrock'
+  });
+
+const susan = new Person ({
+    name: 'Susan',
+    age: 30,
+    location: 'Arkansa'
+});
+
+const brit = new Instructor ({
+    name: 'Brit',
+    age: 'n/a',
+    location: 'Ontario',
+    specialty: 'HTML5, CSS, JavaScript', 
+    favLanguage: 'CSS',
+    catchPhrase: 'Peace Up, A-Town down.'
+});
+
+const jake = new Instructor ({
+    name: 'Jake',
+    age: '29',
+    location: 'Texas',
+    specialty: 'React, JavaScript', 
+    favLanguage: 'Python',
+    catchPhrase: 'Something, something, ok.'
+});
+
+const john = new Student ({
+    name: 'John',
+    age: 28,
+    location: 'Colorado Springs, CO.',
+    previousBackground:'Sales at Comcast',
+    className: 'WEB23',
+    favSubjects: [
+        'CSS',
+        'React',
+        'Javascript'
+    ]
+});
+
+const josh = new Student ({
+    name: 'Josh',
+    age: 26,
+    location: 'Dallas, TX.',
+    previousBackground:'Streamer on Twitch.tv',
+    className: 'WEB20',
+    favSubjects: [
+        'CSS',
+        'React',
+        'Javascript'
+    ]
+});
+
+const batman = new ProjectManager ({
+    name: 'BatMan',
+    age: '40',
+    location: 'Gotham City',
+    specialty: 'HTML5, CSS, JavaScript', 
+    favLanguage: 'Python',
+    catchPhrase: 'Where is she?!?',
+    gradClassName: 'League of Assassins',
+    favInstructor: "Ra's al  Ghul",
+});
+
+const ironman = new ProjectManager ({
+    name: 'Tony',
+    age: '40',
+    location: 'Long Island',
+    specialty: 'Everything', 
+    favLanguage: 'Snark',
+    catchPhrase: 'I am Ironman.',
+    gradClassName: 'MIT',
+    favInstructor: "Howard Stark",
+});
+
+
+ironman.speak();
+ironman.debugsCode(john, 'Javascript');
+brit.demo('React');
+john.sprintChallenge('HTML5');
